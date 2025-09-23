@@ -1,0 +1,28 @@
+<section class="main-section">
+    <h1 class="section-head mt-2 font-serif font-bold">All Categories</h1>
+    <div class="container-auto">
+
+        <div class="border-t-4 border-green-300 italic me-[50%] ms-[42%] w-20"></div>
+        <div class="grid mt-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+
+            @for(category of allCategories ; track category._id){
+            <div class="outter p-3">
+                <div  (click)="getSubCategories(category._id)" class="category">
+                    <div class="sm:h-full md:h-44 lg:h-48 img-box relative overflow-hidden cursor-pointer group"><img
+                            class="block w-full  border-2 border-green-600/45 duration-500 group-hover:scale-125"
+                            [src]="category.image" [alt]="category.slug">
+
+                    </div>
+
+                    <h1 class="text-2xl text-center bg-green-300 text-black"> {{category.name}} </h1>
+                </div>
+            </div>
+        }
+    </div>
+    @if(subCategories){
+        <app-sub-category  [subCategories]="subCategories"></app-sub-category>
+        
+    }
+    </div>
+
+</section>

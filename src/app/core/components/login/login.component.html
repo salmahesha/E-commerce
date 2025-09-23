@@ -1,0 +1,73 @@
+<section class="registration main-section p-5">
+    <div class="container-auto">
+        <div class="content w-3/4 m-auto font-serif bg-gray-100 shadow-2xl shadow-green-200 rounded-3xl">
+            <div class="flex flex-col items-center">
+                <h1 class="font-medium text-center rounded-2x p-3 text-emerald-500 text-4xl">Login</h1>
+                <i class="fa-solid fa-circle-user text-9xl" style="color: #3ec29a;"></i>
+                @if(invalidEmail){
+                    <p class="alert mt-4">{{invalidEmail}}</p>
+                }
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="login()" class="m-2 p-1">
+
+                <div class="relative my-2">
+                    <input formControlName="email" type="email" id="email"
+                        class="focus:ring-0  block focus:outline-none rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder=" " [class]="{'valid':!loginForm.get('email')?.errors &&( loginForm.get('email')?.touched || loginForm.get('email')?.dirty) ,
+                    'invalid':loginForm.get('email')?.errors &&( loginForm.get('email')?.touched || loginForm.get('email')?.dirty) 
+                    }"/>
+                    @if(loginForm.get('email')?.errors &&( loginForm.get('email')?.touched || loginForm.get('email')?.dirty)){
+                        <i class="fa-solid fa-xmark fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #e1290d;"></i>
+
+                    }
+                    @if((!loginForm.get('email')?.errors )&&( loginForm.get('email')?.touched || loginForm.get('email')?.dirty)){
+
+                        <i class="fa-solid fa-check fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #34c197;"></i>
+                    }
+                    <label for="email"
+                    class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email</label>
+                </div>
+                @let emailVal = loginForm.get('email');
+                @if(emailVal?.getError('required')&&emailVal?.touched){
+
+                <p class="alert">Email is required</p>
+                }
+                @if(emailVal?.getError('email')&&emailVal?.touched){
+
+                <p class="alert">Email is not correct</p>
+                }
+                <div class="relative my-2">
+                    <input formControlName="password" type="password" id="password"
+                        class="focus:ring-0  block focus:outline-none rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder=" " [class]="{'valid':!loginForm.get('password')?.errors &&( loginForm.get('password')?.touched || loginForm.get('password')?.dirty) ,
+                    'invalid':loginForm.get('password')?.errors &&( loginForm.get('password')?.touched || loginForm.get('password')?.dirty) 
+                    }" />
+                    @if(loginForm.get('password')?.errors &&( loginForm.get('password')?.touched || loginForm.get('password')?.dirty)){
+                        <i class="fa-solid fa-xmark fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #e1290d;"></i>
+
+                    }
+                    @if((!loginForm.get('password')?.errors )&&( loginForm.get('password')?.touched || loginForm.get('password')?.dirty)){
+
+                        <i class="fa-solid fa-check fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #34c197;"></i>
+                    }
+
+                    <label for="password"
+                        class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Password</label>
+                </div>
+                <a routerLink="/forgotPass" class="text-2xl text-green-400 border-b-2 border-green-400 hover:text-green-500 cursor-pointer hover:border-green-500  duration-500">Do you forget password?</a>
+                @let passControl =loginForm.get('password');
+                @if(passControl?.getError('pattern')&&passControl?.touched){
+                <p class="alert">Wrong pattern,Try again</p>
+                }
+                @if(passControl?.getError('required')&&passControl?.touched){
+                <p class="alert">Password is required</p>
+                }
+
+
+                <p class="text-center font-sans font-light text-gray-500 text-2xl italic my-2">Don't have an account?<a
+                        routerLink="/register" class="cursor-pointer text-green-500">Sign Up</a></p>
+                <button [disabled]="loginForm.invalid" class="btn">Log in</button>
+            </form>
+        </div>
+    </div>
+</section>

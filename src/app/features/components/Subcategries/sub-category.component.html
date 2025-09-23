@@ -1,0 +1,13 @@
+<section class="main-section">
+    <div class="container-auto">
+        <div class="flex flex-wrap w-3/4">
+
+            @for(subCategory of subCategories() ; track subCategory._id){
+                <div [routerLink]="['/subCategoryProducts' , subCategory._id]" class="p-3 w-1/2 cursor-pointer group">
+                    
+                    <h1 class="text-2xl p-5 border-2 border-green-400 group-hover:bg-green-100 group-hover:scale-105"> {{subCategory.name}} </h1>
+                </div>
+            }
+        </div>
+    </div>
+</section>

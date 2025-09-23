@@ -1,0 +1,87 @@
+<section class="registration p-5">
+    <div class="container-auto">
+        <div class="content w-3/4 m-auto font-serif bg-gray-100 shadow-2xl shadow-green-200 rounded-3xl">
+            <div class="text-center text-bold my-2 text-green-700">
+
+                <h1 class="text-4xl">Shipping details</h1>
+                <p class="font-light font-sans">Please write your details</p>
+            </div>
+            <form [formGroup]="checkOutForm" (ngSubmit)="checkOut()" class="m-2 p-1">
+
+                <div class="relative my-2">
+                    <input formControlName="details" type="details" id="details"
+                        class="focus:ring-0  block focus:outline-none rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder=" " [class]="{'valid':!checkOutForm.get('details')?.errors &&( checkOutForm.get('details')?.touched || checkOutForm.get('details')?.dirty) ,
+                    'invalid':checkOutForm.get('details')?.errors &&( checkOutForm.get('details')?.touched || checkOutForm.get('details')?.dirty) 
+                    }" />
+                    @if(checkOutForm.get('details')?.errors &&( checkOutForm.get('details')?.touched ||
+                    checkOutForm.get('details')?.dirty)){
+                    <i class="fa-solid fa-xmark fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #e1290d;"></i>
+
+                    }
+                    @if((!checkOutForm.get('details')?.errors )&&( checkOutForm.get('details')?.touched ||
+                    checkOutForm.get('details')?.dirty)){
+
+                    <i class="fa-solid fa-check fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #34c197;"></i>
+                    }
+                    <label for="details"
+                        class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">details</label>
+                </div>
+                @let detailsVal = checkOutForm.get('details');
+                @if(detailsVal?.getError('required')&&detailsVal?.touched){
+
+                <p class="alert">details is required</p>
+                }
+                @if(detailsVal?.getError('details')&&detailsVal?.touched){
+
+                <p class="alert">details is not correct</p>
+                }
+
+                <div class="relative my-2">
+                    <input formControlName="phone" type="phone" id="phone"
+                        class="focus:ring-0  block focus:outline-none rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder=" " [class]="{'valid':!checkOutForm.get('phone')?.errors &&( checkOutForm.get('phone')?.touched || checkOutForm.get('phone')?.dirty) ,
+                    'invalid':checkOutForm.get('phone')?.errors &&( checkOutForm.get('phone')?.touched || checkOutForm.get('phone')?.dirty) 
+                    }" />
+                    @if(checkOutForm.get('phone')?.errors &&( checkOutForm.get('phone')?.touched ||
+                    checkOutForm.get('phone')?.dirty)){
+                    <i class="fa-solid fa-xmark fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #e1290d;"></i>
+
+                    }
+                    @if((!checkOutForm.get('phone')?.errors )&&( checkOutForm.get('phone')?.touched ||
+                    checkOutForm.get('phone')?.dirty)){
+
+                    <i class="fa-solid fa-check fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #34c197;"></i>
+                    }
+
+                    <label for="phone"
+                        class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">phone</label>
+                </div>
+                <div class="relative my-2">
+                    <input list="cities" formControlName="city"  id="city"
+                        class="focus:ring-0  block focus:outline-none rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder=" " [class]="{'valid':!checkOutForm.get('city')?.errors &&( checkOutForm.get('city')?.touched || checkOutForm.get('city')?.dirty) ,
+                    'invalid':checkOutForm.get('city')?.errors &&( checkOutForm.get('city')?.touched || checkOutForm.get('city')?.dirty) 
+                    }" />
+                    <label  for="city"
+                        class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">city</label>
+                    <datalist id="cities">
+                        <option value="Egypt">
+                        <option value="United States">
+                        <option value="Canada">
+                        <option value="United Kingdom">
+                        <option value="Germany">
+                        <option value="France">
+                        <option value="Italy">
+                        <option value="Japan">
+                        <option value="Australia">
+                        <option value="China">
+                        <option value="India">
+
+                    </datalist>
+                </div>
+                <button [disabled]="checkOutForm.invalid" class="btn">Payment</button>
+            </form>
+        </div>
+    </div>
+</section>

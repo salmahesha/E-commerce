@@ -1,0 +1,72 @@
+<section class="main-section mt-7">
+    <h1 class="section-head">All products</h1>
+    <div class="container-auto">
+        <input [(ngModel)]="searchValue" type="text" placeholder="Search by name..." class="placeholder:text-2xl placeholder:font-sans p-3 w-full my-5 border-transparent bg-gray-100 rounded-2xl focus:outline-none focus:ring-0 border-2 border-b-gray-100 focus:border-2 focus:border-b-green-400" />
+        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5">
+            @for(product of products |search : searchValue ;track product._id){
+            <div class="outter p-3">
+                <div class="product me-auto p-4 group">
+                    <div  [routerLink]="['/p-details' , product._id]">
+
+                        <div class="img-box"><img [src]="product.imageCover" class=" m-auto lg:size-48 object-contain" [alt]="product.title">
+                        </div>
+                        <div class="content font-sans">
+                            
+                            <h1 class="text-emerald-400 font-light">{{product.category.name}} </h1>
+                            <h1 class="font-light">{{product.title.split(' ',2).join(" ")}} </h1>
+                            <div class="flex flex-wrap justify-between">
+                                
+                                <h1 class="font-medium">Price: {{product.price|currency:'GBP'}} </h1>
+                                <h1 class="text-gray-400"><i class="fa-solid fa-star" style="color: #FFD43B;"></i>{{product.ratingsAverage}} </h1>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="flex flex-wrap">
+
+                            <button (click)="addToCart(product._id)" class="btn w-[80%] text-center translate-y-[150%] group-hover:translate-y-0 duration-500">Add to Cart+</button>
+                            <button (click)="addToWhishList(product._id);" class="cursor-pointer w-[20%]"><i [class.text-red-500]="isInWishList(product._id)"  class="fa fa-lg fa-heart text-black"></i></button>
+
+                        </div>
+                </div>
+            </div>
+            }
+        </div>
+                <nav aria-label="Page navigation example">
+            <ul class="flex items-center my-5 justify-center -space-x-px h-10 text-base">
+                <li (click)="(metadata.currentPage === metadata.numberOfPages)||(metadata.currentPage > 1 && metadata.currentPage < metadata.numberOfPages)?changePage(metadata.currentPage-1):''">
+                    <a 
+                       [class]="metadata.currentPage===1?'bg-gray-200 text-gray-300':'cursor-pointer hover:bg-gray-100 hover:text-black'" class="flex items-center justify-center px-6 h-10 ms-0 leading-tight text-gray-500  border border-e-0 border-gray-300 rounded-s-lg">
+                        <svg class="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 1 1 5l4 4" />
+                        </svg>
+                    </a>
+                </li>
+                
+                <li  (click)="metadata.currentPage !== 1  ? changePage(1) :'' ">
+                    <a
+                       [class.bg-green-300]="metadata.currentPage === 1" class="cursor-pointer flex items-center justify-center px-6 h-10 leading-tight text-black  border border-gray-300 hover:bg-gray-100 hover:text-black ">1</a>
+                </li>
+                <li  (click)="metadata.currentPage !== 2 ? changePage(2) :'' ">
+                    <a 
+                        [class.bg-green-300]="metadata.currentPage === 2" class="cursor-pointer flex items-center justify-center px-6 h-10 leading-tight text-black border border-gray-300 hover:bg-gray-100 hover:text-black ">2</a>
+                </li>
+
+
+                <li (click)="(metadata.currentPage === 1)||(metadata.currentPage > 1 && metadata.currentPage < metadata.numberOfPages)?changePage(metadata.currentPage+1):''">
+                    <a 
+                      [class]="metadata.currentPage===metadata.numberOfPages?'bg-gray-200 text-gray-300':'cursor-pointer hover:bg-gray-100 hover:text-black'"  class="flex items-center justify-center px-6 h-10 leading-tight text-gray-500  border border-gray-300 rounded-e-lg">
+                        <svg class="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
+                        </svg>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </div>
+</section>

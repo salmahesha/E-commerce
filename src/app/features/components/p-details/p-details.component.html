@@ -1,0 +1,34 @@
+<div class="container-auto">
+    <div class="flex flex-wrap items-center p-14">
+        <div class="w-full md:w-1/2 lg:w-1/4">
+            <owl-carousel-o [options]="customOptions">
+
+                @for(img of productDetails.images; track $index) {
+                <ng-template carouselSlide>
+                    <img [src]="img">
+                </ng-template>
+                }
+
+            </owl-carousel-o>
+        </div>
+        <div class="w-full px-10 md:w-1/2 lg:w-3/4">
+            <h3 class="text-2xl  font-light my-3"> {{productDetails.title}} </h3>
+            <p class="font-medium my-3 text-gray-600"> {{productDetails.description}} </p>
+            <h3 class="my-3 text-emerald-800"> {{productDetails.category.name}} </h3>
+            <div class="flex flex-wrap justify-between items-center">
+                <h2 class="text-emerald-600"> {{productDetails.price}} EGP </h2>
+                <div class="">
+
+                    <h2 class="inline">{{productDetails.ratingsAverage}} <i class="fas fa-star text-yellow-300"></i>
+                    </h2>
+                </div>
+            </div>
+            <div class="flex flex-wrap">
+
+                <button (click)="addToCart(productDetails._id)" class="btn w-[80%] text-center">Add to Cart+</button>
+                <button (click)="addToWhishList(productDetails._id)" class="cursor-pointer w-[20%]"  ><i [class.text-red-500]="isInWishList(productDetails._id)" class="fa ms-32 fa-xl fa-heart"></i></button>
+
+            </div>
+        </div>
+    </div>
+</div>

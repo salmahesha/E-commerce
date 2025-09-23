@@ -1,0 +1,161 @@
+<section class="registration p-5">
+    <div class="container-auto">
+        <div class="content w-3/4 m-auto font-serif bg-gray-100 shadow-2xl shadow-green-200 rounded-3xl">
+            <div class="flex flex-col items-center">
+                <h1 class="font-medium text-center rounded-2x p-3 text-emerald-500 text-4xl">Registration Form</h1>
+                <i class="fa-solid fa-user text-8xl" style="color: #3ec29a;"></i>
+            </div>
+            <form [formGroup]="registerForm" class="m-2 p-1" (ngSubmit)="register()">
+                <div class="relative my-2">
+                    <input formControlName="name" type="text" id="name" [class]="{
+                    'valid':!registerForm.get('name')?.errors &&( registerForm.get('name')?.touched || registerForm.get('name')?.dirty) ,
+                    'invalid':registerForm.get('name')?.errors &&( registerForm.get('name')?.touched || registerForm.get('name')?.dirty) 
+                    }" class="block focus:outline-none focus:ring-0 rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder=" " />
+                    @if(registerForm.get('name')?.errors &&( registerForm.get('name')?.touched ||
+                    registerForm.get('name')?.dirty)){
+                    <i class="fa-solid fa-xmark fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #e1290d;"></i>
+
+                    }
+                    @if((!registerForm.get('name')?.errors )&&( registerForm.get('name')?.touched ||
+                    registerForm.get('name')?.dirty)){
+
+                    <i class="fa-solid fa-check fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #34c197;"></i>
+                    }
+
+                    <label for="name"
+                        class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Name</label>
+                </div>
+                @let nameVal =registerForm.get('name');
+                @if(nameVal?.getError('required')&&nameVal?.touched){
+                <p class="alert">Name is required</p>
+                }
+                @if(nameVal?.getError('minlength')&&nameVal?.touched){
+                <p class="alert">Name is short</p>
+                }
+                @if(nameVal?.getError('maxlength')&&nameVal?.touched){
+                <p class="alert">Name is long</p>
+                }
+                <div class="relative my-2">
+                    <input formControlName="email" type="email" id="email"
+                        class="focus:ring-0  block focus:outline-none rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder=" " [class]="{
+                    'valid':!registerForm.get('email')?.errors &&( registerForm.get('email')?.touched || registerForm.get('email')?.dirty) ,
+                    'invalid':registerForm.get('email')?.errors &&( registerForm.get('email')?.touched || registerForm.get('email')?.dirty) 
+                    }" />
+                    @if(registerForm.get('email')?.errors &&( registerForm.get('email')?.touched ||
+                    registerForm.get('email')?.dirty)){
+                    <i class="fa-solid fa-xmark fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #e1290d;"></i>
+
+                    }
+                    @if((!registerForm.get('email')?.errors )&&( registerForm.get('email')?.touched ||
+                    registerForm.get('email')?.dirty)){
+
+                    <i class="fa-solid fa-check fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #34c197;"></i>
+                    }
+
+                    <label for="email"
+                        class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email</label>
+                </div>
+                @let emailVal = registerForm.get('email');
+                @if(emailVal?.getError('required')&&emailVal?.touched){
+
+                <p class="alert">Email is required</p>
+                }
+                @if(emailVal?.getError('email')&&emailVal?.touched){
+
+                <p class="alert">Email is not correct</p>
+                }
+
+                <div class="relative my-2">
+                    <input formControlName="password" type="password" id="password"
+                        class="focus:ring-0  block focus:outline-none rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder=" " [class]="{
+                    'valid':!registerForm.get('password')?.errors &&( registerForm.get('password')?.touched || registerForm.get('password')?.dirty) ,
+                    'invalid':registerForm.get('password')?.errors &&( registerForm.get('password')?.touched || registerForm.get('password')?.dirty) 
+                    }" />
+                    @if(registerForm.get('password')?.errors &&( registerForm.get('password')?.touched ||
+                    registerForm.get('password')?.dirty)){
+                    <i class="fa-solid fa-xmark fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #e1290d;"></i>
+
+                    }
+                    @if((!registerForm.get('password')?.errors )&&( registerForm.get('password')?.touched ||
+                    registerForm.get('password')?.dirty)){
+
+                    <i class="fa-solid fa-check fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #34c197;"></i>
+                    }
+
+                    <label for="password"
+                        class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Password</label>
+                </div>
+                @let passControl =registerForm.get('password');
+                @if(passControl?.getError('pattern')&&passControl?.touched){
+                <p class="alert">Wrong pattern,Try again</p>
+                }
+                @if(passControl?.getError('required')&&passControl?.touched){
+                <p class="alert">Password is required</p>
+                }
+                <div class="relative my-2">
+                    <input formControlName="rePassword" type="password" id="rePassword"
+                        class="focus:ring-0  block focus:outline-none rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder=" " [class]="{
+                    'valid':!(registerForm.get('rePassword')?.errors ||registerForm.getError('missMatch')) &&( registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty) ,
+                    'invalid':(registerForm.get('rePassword')?.errors || registerForm.getError('missMatch')) &&( registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty) 
+                    }" />
+                    @if((registerForm.get('rePassword')?.errors ||registerForm.getError('missMatch'))&&(
+                    registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty)){
+                    <i class="fa-solid fa-xmark fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #e1290d;"></i>
+
+                    }
+                    @if(!(registerForm.get('rePassword')?.errors ||registerForm.getError('missMatch'))&&(
+                    registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty)){
+
+                    <i class="fa-solid fa-check fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #34c197;"></i>
+                    }
+
+                    <label for="rePassword"
+                        class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">rePassword</label>
+                </div>
+                @let rePassControl =registerForm.get('rePassword');
+                @if(rePassControl?.getError('required')&&rePassControl?.touched){
+                <p class="alert">rePassword is required</p>
+                }
+                @if(registerForm.getError('missMatch')&&rePassControl?.touched){
+                <p class="alert">rePassword is not match password</p>
+                }
+                <div class="relative my-2">
+                    <input formControlName="phone" type="tel" id="phone"
+                        class="focus:ring-0  block focus:outline-none rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder=" " [class]="{
+                    'valid':!registerForm.get('phone')?.errors &&( registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty) ,
+                    'invalid':registerForm.get('phone')?.errors &&( registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty) 
+                    }" />
+                    @if(registerForm.get('phone')?.errors &&( registerForm.get('phone')?.touched ||
+                    registerForm.get('phone')?.dirty)){
+                    <i class="fa-solid fa-xmark fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #e1290d;"></i>
+
+                    }
+                    @if((!registerForm.get('phone')?.errors )&&( registerForm.get('phone')?.touched ||
+                    registerForm.get('phone')?.dirty)){
+
+                    <i class="fa-solid fa-check fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #34c197;"></i>
+                    }
+
+                    <label for="phone"
+                        class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Phone</label>
+                </div>
+                @let phoneControl = registerForm.get('phone');
+                @if(phoneControl?.getError('required')&&phoneControl?.touched){
+                <p class="alert">Phone number is required</p>
+                }
+                @if(phoneControl?.getError('pattern')&&phoneControl?.touched){
+                <p class="alert">Invalid phone number.please check and try again</p>
+                }
+                <p class="text-center font-sans font-light text-gray-500 text-2xl italic my-2">Do you have an account?<a
+                        routerLink="/login" class="text-green-500">login</a></p>
+
+                <button [disabled]="registerForm.invalid" class="btn">Sign up</button>
+            </form>
+        </div>
+    </div>
+</section>

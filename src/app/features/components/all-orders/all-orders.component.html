@@ -1,0 +1,77 @@
+<section class="main-section">
+    <div class="container-auto">
+        <div class=" p-2 flex flex-col items-center">
+
+            <i class="text-8xl text-green-400 fa-solid fa-circle-check"></i>
+            <h1 class="section-head p-5">Your Order Completed</h1>
+            <p class="font-light text-gray-500">Thank you.Your Order has been received</p>
+        </div>
+        @for ( order of orders.slice().reverse(); track order._id) {
+            
+            <div class="flex flex-wrap text-black justify-center text-2xl text-center">
+                <div class="w-1/5">
+                    <div class="details my-3 bg-green-100 p-7">
+
+                        <h1 class="font-bold font-sans text-green-500">#OrderID:</h1>
+                        <h4> {{order.id}} </h4>
+                    </div>
+                </div>
+                <div class="w-1/5">
+                    <div class="details my-3 bg-green-100 p-7">
+                        <h1 class="font-bold font-sans text-green-500">PaymentMethod</h1>
+                        <h4 class="" > {{order.paymentMethodType}} </h4>
+                        
+                    </div>
+                </div>
+                <div class="w-1/5">
+                    <div class="details my-3 bg-green-100 p-7">
+                        
+                        <h1 class="font-bold font-sans text-green-500">Taxes</h1>
+                    <h4> {{order.taxPrice}} </h4>
+                </div>
+            </div>
+            <div class="w-1/5">
+                <div class="details my-3 bg-green-100 p-7">
+                    
+                    <h1 class="font-bold font-sans text-green-500">Total Price</h1>
+                    <h4> {{order.totalOrderPrice}} </h4>
+                </div>
+            </div>
+            <div class="w-1/5">
+                <div class="details my-3 bg-green-100 p-7">
+                    
+                    <h1 class="font-bold font-sans text-green-500">Paid at</h1>
+                    <h4> {{order.paidAt|date}} </h4>
+                </div>
+            </div>
+        </div>
+       
+            <div class="border-2 border-green-500/50 shadow-2xl shadow-green-500/45">
+                <div class="flex flex-wrap justify-between  border-b-2 border-b-green-100 py-2">
+
+                    <h1 class="font-serif text-green-800 font-light text-2xl">Order Details</h1>
+                    <h1 class="font-serif text-green-800 font-light text-2xl">Sub Total</h1>
+                </div>
+                <h1 class="font-sans text-green-800 font-extralight text-2xl ">Products</h1>
+                @for ( item of order.cartItems.slice().reverse(); track item._id) {
+                    <div class="flex flex-wrap items-center justify-between">
+                        <div class="flex flex-wrap items-center">
+                            
+                            <div class="img-box p-3"><img class="size-48 object-contain block" [src]="item.product.imageCover" alt=""></div>
+                            <div class="">                            <h1 class="font-bold text-green-600"> {{item.product.title.split(' ',2).join(" ")}} </h1>
+                                <h1 class="font-serif font-extralight text-gray-500"> quantity: {{item.count}} / brand: {{item.product.brand.name}} / category: {{item.product.category.name}} </h1>
+                            </div>
+                            
+                        </div>
+                        <h1 class="font-serif font-light text-2xl text-gray-500"> {{item.price|currency:'GBP'}} </h1>
+                        
+                        
+                    </div>
+                }
+                
+                
+        
+            </div>
+            }
+        </div>
+    </section>

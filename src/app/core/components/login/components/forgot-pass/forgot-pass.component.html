@@ -1,0 +1,28 @@
+<section class="registration p-5">
+    <div class="container-auto">
+        <div class="content w-3/4 m-auto font-serif p-3 bg-gray-100 shadow-2xl shadow-green-200 rounded-3xl">
+            <div class="text-center text-bold my-2 text-green-700">
+                                <i class="fa-solid text-8xl fa-key" style="color: #63E6BE;"></i>
+
+                <h1 class="text-4xl">Forgot Password?</h1>
+                <p class="font-light font-sans">Please write your email to receive code to set a new password.</p>
+            </div>
+            <form [formGroup]="emailAddress">
+
+                <div class="relative my-2">
+                    <input formControlName="email" type="email" id="email"
+                        class="focus:ring-0  block focus:outline-none rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder=" " [class]="{'valid':!emailAddress.get('email')?.errors &&( emailAddress.get('email')?.touched || emailAddress.get('email')?.dirty) ,
+                    'invalid':emailAddress.get('email')?.errors &&( emailAddress.get('email')?.touched || emailAddress.get('email')?.dirty),
+                   }" />
+                    <label for="email"
+                        class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email</label>
+                    <button (click)="sendCode()" [disabled]="emailAddress.invalid" class="btn w-1/4">Send Code</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+</section>

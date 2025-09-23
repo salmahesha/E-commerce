@@ -1,0 +1,54 @@
+<section class="main-section">
+    <h1 class="text-center text-green-800 text-4xl m-3 font-bold font-serif">All Brands</h1>
+    <div class="container-auto">
+        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+            @for(brand of allBrands ; track brand._id){
+            <div [routerLink]="['/brand-products',brand._id,brand.name]"  class="brand group cursor-pointer">
+                <div class="inner duration-500 group-hover:scale-105 p-3">
+                    <img class=" border-2 border-black w-full block" [src]="brand.image" alt="">
+                    <p class="text-center bg-black text-white text-2xl"> {{brand.name}} </p>
+                </div>
+            </div>
+
+            }
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="flex items-center my-5 justify-center -space-x-px h-10 text-base">
+                <li (click)="pageNumber!==1? changePage(1):''">
+                    <a [class]="pageNumber==1?'bg-gray-200 text-gray-300':'cursor-pointer hover:bg-gray-100 hover:text-black'"
+                        class=" flex items-center justify-center px-6 h-10 ms-0 leading-tight text-gray-500  border border-e-0 border-gray-300 rounded-s-lg  ">
+                        <svg class="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 1 1 5l4 4" />
+                        </svg>
+                    </a>
+                </li>
+                <li (click)="pageNumber!==1? changePage(1):''">
+                    <a
+                       [class.bg-green-300]="pageNumber === 1" class="cursor-pointer flex items-center justify-center px-6 h-10 leading-tight text-black  border border-gray-300 hover:bg-gray-100 hover:text-black ">1</a>
+                </li>
+                <li (click)="pageNumber!==2? changePage(2):''">
+                    <a
+                      [class.bg-green-300]="pageNumber === 2"  class="cursor-pointer flex items-center justify-center px-6 h-10 leading-tight text-black  border border-gray-300 hover:bg-gray-100 hover:text-black ">2</a>
+                </li>
+
+
+                <li (click)="pageNumber!==2? changePage(2):''">
+                    <a [class]="pageNumber==2?'bg-gray-200 text-gray-300':'cursor-pointer hover:bg-gray-100 hover:text-black'"
+                        class=" flex items-center justify-center px-6 h-10 leading-tight text-black  border border-gray-300 rounded-e-lg">
+                        <svg class="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
+                        </svg>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+
+    </div>
+
+</section>

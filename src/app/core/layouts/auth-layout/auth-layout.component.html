@@ -1,0 +1,17 @@
+<div class="mb-20  sticky top-0 start-0 z-[1000]">
+
+    <ngx-spinner bdColor="rgba(0,0,0,0.8)" size="medium" color="#fff" [fullScreen]="true" type="none">
+
+        <div class="mySpinner">
+
+            <h1 class="text-4xl text-white">
+                <i class="fa-solid fa-cart-shopping fa-2xl text-green-500"></i>
+                Fresh Cart
+            </h1>
+        </div>
+
+    </ngx-spinner>
+    <app-navbar [check]="false"></app-navbar>
+</div>
+
+<router-outlet></router-outlet>

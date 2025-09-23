@@ -1,0 +1,51 @@
+<section class="main-section">
+    <div class="container-auto shadow-2xl shadow-green-200">
+        <div class="p-8">
+            <div class="flex px-5 border-b-green-800/20 border-b-2 flex-wrap justify-between">
+                <h1 class="text-bold text-green-600 text-4xl">🛒My Cart</h1>
+                <h3 class="text-2xl text-green-700 my-2 font-light font-sans"> Total Cart Price:
+                    {{cartData()?.totalCartPrice}}EGP
+                </h3>
+
+            </div>
+            @if(cartData()?.products?.length){
+
+                <p (click)="clearCart()" class="cursor-pointer text-bold text-2xl font-serif text-right my-1 text-red-500">Clear Cart
+                       <i  class="fa fa-trash-can" ></i>
+                   </p>
+            }
+            @for (cartItem of cartData()?.products ; track cartItem.product._id) {
+            <div class="flex py-2 flex-wrap items-center border-b-2 border-green-500/20">
+                <div class="img-box w-full lg:w-1/6">
+                    <img [src]="cartItem.product.imageCover" class="block w-full" alt="">
+
+
+                </div>
+                <div class="mx-2 lg:w-[65%]">
+
+                    <h2 class="text-2xl my-2 text-green-800">{{cartItem.product.title}} </h2>
+                    <h2 class="text-green-400 my-2 text-2xl">price: {{cartItem.price}}EGP</h2>
+                    <div class="flex flex-wrap text-red-600 my-2 text-2xl">
+                        <i class="text-2xl cursor-pointer fa fa-trash-can"></i>
+                        <p (click)="removeItem(cartItem.product._id)" class="text-2xl cursor-pointer">Remove Item</p>
+                    </div>
+                </div>
+                <div class="text-2xl text-green-500 p-2 flex flex-wrap  justify-center items-center">
+                    <i (click)="changeQuantity(cartItem.product.id,cartItem.count + 1)" class="fa fa-plus-circle cursor-pointer fa-lg mx-2"></i>
+                    <p class="mx-2 text-green-600"> {{cartItem.count}} </p>
+                    @if(cartItem.count > 1){<i (click)="changeQuantity(cartItem.product.id,cartItem.count - 1)" class="mx-2 cursor-pointer fa fa-minus-circle fa-lg"></i>
+                    }
+                </div>
+            </div>
+            }
+            
+            @if(cartData()?.products?.length){
+
+                <button [routerLink]="['/checkOut',cartData()?._id]" class="btn w-full lg:w-1/2">
+                    Check out<i class="fa-solid fa-cart-shopping"></i></button>
+               
+            }
+            
+        </div>
+    </div>
+</section>

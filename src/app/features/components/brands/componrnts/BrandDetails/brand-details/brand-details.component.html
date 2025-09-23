@@ -1,0 +1,43 @@
+<section class="main-section mt-5">
+    <h1 class="section-head"> {{brand_name}} products</h1>
+    <div class="container-auto">
+        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5">
+            @for(product of products;track product._id){
+                
+
+                    <div class="outter p-3">
+                        <div class="product me-auto p-4 group">
+                            <div  [routerLink]="['/p-details' , product._id]">
+                                
+                                <div class="img-box"><img [src]="product.imageCover" class=" m-auto lg:size-48 object-contain" [alt]="product.title">
+                                </div>
+                                <div class="content font-sans">
+                                    
+                                    <h1 class="text-emerald-400 font-light">{{product.category.name}} </h1>
+                                    <h1 class="font-light">{{product.title.split(' ',2).join(" ")}} </h1>
+                                    <div class="flex flex-wrap justify-between">
+                                        
+                                        <h1 class="font-medium">Price: {{product.price|currency:'GBP'}} </h1>
+                                        <h1 class=" text-gray-400"><i class="fa-solid fa-star" style="color: #FFD43B;"></i>{{product.ratingsAverage}} </h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap">
+                                
+                                <button (click)="addToCart(product._id)" class="btn w-[80%] text-center translate-y-[150%] group-hover:translate-y-0 duration-500">Add to Cart+</button>
+                                <button (click)="addToWhishList(product._id);" class="cursor-pointer w-[20%]"><i [class.text-red-500]="isInWishList(product._id)"  class="fa fa-lg fa-heart text-black"></i></button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                
+            }
+        </div>
+        @if(!products.length){
+                <p class="text-center mt-6 text-green-950 font-sans text-4xl font-extralight">products from this brand are currently unavailable</p>
+
+        }
+               
+
+    </div>
+</section>
