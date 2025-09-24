@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
   baseUrl: 'https://ecommerce.routemisr.com',
-  domain: 'http://localhost:4200'
+  domain: 'https://salmahesha.github.io/E-commerce'
 };
