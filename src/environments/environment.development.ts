@@ -1,4 +1,5 @@
 export const environment = {
-    baseUrl:'https://ecommerce.routemisr.com',
-    domain:'http://localhost:3200'
+  production: false,
+  baseUrl: 'https://ecommerce.routemisr.com',
+  domain: 'http://localhost:4200'
 };
