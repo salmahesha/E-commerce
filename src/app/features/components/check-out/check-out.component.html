@@ -6,7 +6,7 @@
                 <h1 class="text-4xl">Shipping details</h1>
                 <p class="font-light font-sans">Please write your details</p>
             </div>
-            <form [formGroup]="checkOutForm" (ngSubmit)="checkOut()" class="m-2 p-1">
+            <form [formGroup]="checkOutForm" (ngSubmit)="payment()" class="m-2 p-1">
 
                 <div class="relative my-2">
                     <input formControlName="details" type="details" id="details"
@@ -79,8 +79,24 @@
                         <option value="India">
 
                     </datalist>
+                    <div class="pay-method px-5 font-sans font-light">
+                        <form [formGroup]="paymentMethod" >
+
+                            <label class="text-green-700 text-2xl" >Payment method:</label>
+                            <div class="">
+                                
+                                <input formControlName="method" class="text-2xl text-green-600 outline-2 outline-emerald-500" type="radio" name="pay-method" id="cash"value="cash"/>
+                                <label class="px-3 text-2xl text-green-800" for="cash">Cash</label>
+                            </div>
+                            <div class="">
+                                
+                                <input formControlName="method" class="text-2xl text-green-600 ring-0 outline-2 outline-emerald-500" type="radio" name="pay-method" id="visa"value="visa" />
+                                <label class="px-3 text-2xl text-green-800" for="visa">Visa</label>
+                            </div> 
+                        </form>
+                    </div>
                 </div>
-                <button [disabled]="checkOutForm.invalid" class="btn">Payment</button>
+                <button [disabled]="checkOutForm.invalid || paymentMethod.invalid" class="btn">Payment</button>
             </form>
         </div>
     </div>
