@@ -8,36 +8,36 @@
         </div>
         @for ( order of orders.slice().reverse(); track order._id) {
             
-            <div class="flex flex-wrap text-black justify-center text-2xl text-center">
-                <div class="w-1/5">
+            <div class="md:flex flex-wrap text-black justify-center text-2xl text-center">
+                <div class="lg:w-1/5">
                     <div class="details my-3 bg-green-100 p-7">
 
                         <h1 class="font-bold font-sans text-green-500">#OrderID:</h1>
                         <h4> {{order.id}} </h4>
                     </div>
                 </div>
-                <div class="w-1/5">
+                <div class="lg:w-1/5">
                     <div class="details my-3 bg-green-100 p-7">
                         <h1 class="font-bold font-sans text-green-500">PaymentMethod</h1>
                         <h4 class="" > {{order.paymentMethodType}} </h4>
                         
                     </div>
                 </div>
-                <div class="w-1/5">
+                <div class="lg:w-1/5">
                     <div class="details my-3 bg-green-100 p-7">
                         
                         <h1 class="font-bold font-sans text-green-500">Taxes</h1>
                     <h4> {{order.taxPrice}} </h4>
                 </div>
             </div>
-            <div class="w-1/5">
+            <div class="lg:w-1/5">
                 <div class="details my-3 bg-green-100 p-7">
                     
                     <h1 class="font-bold font-sans text-green-500">Total Price</h1>
                     <h4> {{order.totalOrderPrice}} </h4>
                 </div>
             </div>
-            <div class="w-1/5">
+            <div class="lg:w-1/5">
                 <div class="details my-3 bg-green-100 p-7">
                     
                     <h1 class="font-bold font-sans text-green-500">Paid at</h1>
