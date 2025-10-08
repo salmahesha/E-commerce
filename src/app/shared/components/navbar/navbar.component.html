@@ -87,14 +87,14 @@
 
 </ul>
 </div>
-</div>
 @if (myAccount) {
   <div (click)="myAccount=false" class= "absolute top-0 start-0 bottom-0 end-0 h-screen bg-black/5 z-[999999]">
     
-    <div (click)="$event.stopPropagation()" class="account absolute  end-0 top-1/12 md:start-10/12 md:end-0 md:bottom-1.5 bg-gray-200 rounded-2xl border-2 border-green-200 p-5 duration-500">
+    <div (click)="$event" class="account absolute  end-0 top-1/12 md:start-10/12 md:end-0 md:bottom-1.5 bg-gray-200 rounded-2xl border-2 border-green-200 p-5 duration-500">
 
       <app-my-account [userName]="userName"></app-my-account>
     </div>
   </div>
 }
+</div>
 </nav>
