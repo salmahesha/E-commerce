@@ -5,10 +5,12 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/authentication/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CartService } from '../../services/Cart/cart.service';
+import { MyAccountComponent } from "../../../features/components/MyAccount/my-account/my-account.component";
+import { Toast } from "ngx-toastr";
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink , RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, MyAccountComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -16,7 +18,14 @@ export class NavbarComponent {
     constructor(private _CartService:CartService, private _CookieService:CookieService,private _Router:Router,private _AuthService:AuthService,private flowbiteService: FlowbiteService ) {}
   userName!:string;
   numberOfItems!:number;
+  myAccount:boolean = false;
   check : InputSignal<boolean> = input(false);
+  dark = signal<boolean>(false);
+
+  darkMood() {
+    this.dark.set(!this.dark());
+    document.documentElement.classList.toggle('dark', this.dark());
+  }
   ngOnInit(): void {
     this.flowbiteService.loadFlowbite((flowbite) => {
       initFlowbite();
@@ -43,11 +52,6 @@ export class NavbarComponent {
     this._CookieService.delete('token');
     this._AuthService.userInfo = null;
     this._Router.navigate(['/login']);
-    this.userName = '';
+    localStorage.removeItem('userEmail');
     }
-  // changeNumber(){
-  //   this.numberOfItems.update((newNumber)=>{return newNumber++})
-  // }
-  
-
 }

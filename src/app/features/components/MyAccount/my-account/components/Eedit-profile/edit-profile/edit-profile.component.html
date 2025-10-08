@@ -1,0 +1,129 @@
+<section class="main-section my-11">
+    <div class="container-auto">
+        <div class="text-2xl font-bold text-green-900">
+            <h1 class="text-4xl my-7 border-green-300 border-b-2 w-3xs">My Profile</h1>
+        </div>
+        <div class="mt-7">
+            <div class="text-center">
+                <h1 class="font-bold font-serif text-green-900">Change your picture</h1>
+                            <label for="image" class="text-9xl cursor-pointer flex flex-wrap items-center">
+                @if ( imageUrl ){
+                <img class="size-64 m-auto rounded-full" [src]="imageUrl" alt="">
+                }@else {
+
+                <i class="fa-solid fa-circle-user text-gray-300"></i>
+                }
+            </label>
+            <input class="w-1/2 hidden cursor-pointer" type="file" (change)="log($event)" name="image" id="image" />
+
+            <p class="font-extralight text-2xl text-green-600 font-serif my-3">{{userEmail}}</p>
+            <p class="font-bold text-2xl my-2 font-serif text-green-900"> {{userName}}</p>
+
+            </div>
+            <div class="">
+                <h1 class="text-2xl font-bold font-serif text-green-900" >Change your Email</h1>
+                <form [formGroup]="editForm" (ngSubmit)="edit()"  class="m-2 p-1">
+                     <input formControlName="name" type="text" id="name" [class]="{
+                    'valid':!editForm.get('name')?.errors &&( editForm.get('name')?.touched || editForm.get('name')?.dirty) ,
+                    'invalid':editForm.get('name')?.errors &&( editForm.get('name')?.touched || editForm.get('name')?.dirty) 
+                    }" class="block focus:outline-none focus:ring-0 rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder="name" />
+                    @if(editForm.get('name')?.errors &&( editForm.get('name')?.touched ||
+                    editForm.get('name')?.dirty)){
+                    <i class="fa-solid fa-xmark fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #e1290d;"></i>
+
+                    }
+                    @if((!editForm.get('name')?.errors )&&( editForm.get('name')?.touched ||
+                    editForm.get('name')?.dirty)){
+
+                    <i class="fa-solid fa-check fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #34c197;"></i>
+                    }
+
+                    <label for="name"
+                        class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Name</label>
+                
+                @let nameVal =editForm.get('name');
+                @if(nameVal?.getError('minlength')&&nameVal?.touched){
+                <p class="alert">Name is short</p>
+                }
+                @if(nameVal?.getError('maxlength')&&nameVal?.touched){
+                <p class="alert">Name is long</p>
+                }
+
+                <div class="relative my-2">
+                    <input formControlName="email" type="email" id="email"
+                        class="focus:ring-0  block focus:outline-none rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder="" [class]="{'valid':!editForm.get('email')?.errors &&( editForm.get('email')?.touched || editForm.get('email')?.dirty) ,
+                    'invalid':editForm.get('email')?.errors &&( editForm.get('email')?.touched || editForm.get('email')?.dirty) 
+                    }"/>
+                    @if(editForm.get('email')?.errors &&( editForm.get('email')?.touched || editForm.get('email')?.dirty)){
+                        <i class="fa-solid fa-xmark fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #e1290d;"></i>
+
+                    }
+                    @if((!editForm.get('email')?.errors )&&( editForm.get('email')?.touched || editForm.get('email')?.dirty)){
+
+                        <i class="fa-solid fa-check fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #34c197;"></i>
+                    }
+                    <label for="email"
+                    class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email <span class="text-red-500">*</span></label>
+                </div>
+                @let emailVal = editForm.get('email');
+                @if(emailVal?.getError('required')&&emailVal?.touched){
+
+                <p class="alert">Email is required</p>
+                }
+                @if(emailVal?.getError('email')&&emailVal?.touched){
+
+                <p class="alert">Email is not correct</p>
+                }
+                <div class="relative my-2">
+                    <input formControlName="phone" type="tel" id="phone"
+                        class="focus:ring-0  block focus:outline-none rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm S border-0 border-b-2 border-emerald-200 peer"
+                        placeholder=" " [class]="{
+                    'valid':!editForm.get('phone')?.errors &&( editForm.get('phone')?.touched || editForm.get('phone')?.dirty) ,
+                    'invalid':editForm.get('phone')?.errors &&( editForm.get('phone')?.touched || editForm.get('phone')?.dirty) 
+                    }" />
+                    @if(editForm.get('phone')?.errors &&( editForm.get('phone')?.touched ||
+                    editForm.get('phone')?.dirty)){
+                    <i class="fa-solid fa-xmark fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #e1290d;"></i>
+
+                    }
+                    @if((!editForm.get('phone')?.errors )&&( editForm.get('phone')?.touched ||
+                    editForm.get('phone')?.dirty)){
+
+                    <i class="fa-solid fa-check fa-2xl absolute top-1/2 bottom-0 right-5" style="color: #34c197;"></i>
+                    }
+
+                    <label for="phone"
+                        class="absolute border-transparent text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5   peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Phone</label>
+                </div>
+                @let phoneControl = editForm.get('phone');
+              
+                @if(phoneControl?.getError('pattern')&&phoneControl?.touched){
+                <p class="alert">Invalid phone number.please check and try again</p>
+                }
+                @let passControl =editForm.get('password');
+                @if(passControl?.getError('pattern')&&passControl?.touched){
+                <p class="alert">Wrong pattern,Try again</p>
+                }
+           
+               
+                @if(errorMsg){
+                    <div class="bg-red-200 p-5 text-red-500 border-2 border-red-500"> {{errorMsg}} </div>
+                }
+                @if(correctMsg){
+                    <div class="bg-green-200 p-5 text-green-500 border-2 border-green-500"> {{correctMsg}} </div>
+                }
+                <button [disabled]="editForm.invalid" class="btn">Edit</button>
+        </form>
+
+              
+        
+        
+    </div>
+    
+    </div>
+    </div>
+
+
+</section>

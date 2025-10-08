@@ -5,3 +5,15 @@
     right:0;
     z-index: 1000;
 }
+.account{
+    animation: move 1s forwards;
+    transition: all;
+}
+@keyframes move {
+    0%{
+        transform: translateX(150%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}

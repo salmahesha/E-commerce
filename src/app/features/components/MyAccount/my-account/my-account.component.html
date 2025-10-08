@@ -1,0 +1,25 @@
+<section class="main-section">
+    <div class="info text-center">
+        
+
+            <label for="image" class="text-9xl cursor-pointer flex flex-wrap justify-center items-center">
+                @if ( imageUrl ){
+                    <img class="size-44 rounded-full" [src]="imageUrl" alt="">
+                }@else {
+
+                    <i class="fa-solid fa-circle-user text-gray-300"></i>
+                }
+            </label>
+            <input class="w-full hidden cursor-pointer" type="file" (change)="log($event)" name="image" id="image" />
+        
+        <p  class="font-extralight text-sm text-green-600 font-serif">{{userEmail}}</p>
+        <p class="font-bold text-2xl my-2 font-serif text-green-900" > {{userName()}}</p>
+    </div>
+    <ul class="text-sm">
+        <li routerLink="/edit-profile" class="my-8 font-sans py-3 text-green-800 cursor-pointer font-bold "><i class="fa-solid fa-pen-to-square text-green-600 fa-xl"></i> Edit Email</li>
+        <li class="my-8 font-sans py-3 text-green-800 cursor-pointer font-bold "><i class="fa-solid fa-location-pin-lock text-green-600 fa-xl"></i> Shipping addresses</li>
+        <li routerLink="/updatePassword" class="my-8 font-sans py-3 text-green-800 cursor-pointer font-bold "><i class="fa-solid fa-lock text-green-600 fa-xl"></i> Update My password</li>
+        <li routerLink="/allorders" class="my-8 font-sans py-3 text-green-800 cursor-pointer font-bold "><i class="fa-brands fa-shopify text-green-600 fa-xl"></i> My Orders</li>
+    </ul>
+    <button (click)="signOut()" class=" bg-green-500 rounded-2xl shadow-xl mb-5 hover:bg-green-100 hover:text-black duration-500 text-white p-2 w-full" >LogOut</button>
+</section>

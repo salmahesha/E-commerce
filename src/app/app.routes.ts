@@ -18,6 +18,9 @@ import { ResetCodeComponent } from './core/components/login/components/ResetCode
 import { WishListComponent } from './features/components/Whishlist/wish-list/wish-list.component';
 import { BrandDetailsComponent } from './features/components/brands/componrnts/BrandDetails/brand-details/brand-details.component';
 import { SubCategoryProductsComponent } from './features/components/Subcategries/components/SubCategoryProducts/sub-category-products/sub-category-products.component';
+import { MyAccountComponent } from './features/components/MyAccount/my-account/my-account.component';
+import { EditProfileComponent } from './features/components/MyAccount/my-account/components/Eedit-profile/edit-profile/edit-profile.component';
+import { UpdatePasswordComponent } from './features/components/MyAccount/my-account/components/update-passwprd/update-password/update-password.component';
 
 export const routes: Routes = [
 
@@ -38,6 +41,9 @@ export const routes: Routes = [
         {path:'brands' , component:BrandsComponent , title:'Brands'},
         {path:'categories' , component:CategoriesComponent , title:'Categories'},
         {path:'cart' , component:CartComponent , title:'Cart'},
+        {path:'myAccount' , component:MyAccountComponent , title:'MyAccount'},
+        {path:'edit-profile' , component:EditProfileComponent , title:'Edit Profile'},
+        {path:'updatePassword' , component:UpdatePasswordComponent , title:'Update Password'},
         {path:'wishList' , component:WishListComponent , title:'wishlist'},
         {path:'products' , component:ProductsComponent , title:'Products'},
         {path:'allorders' , component:AllOrdersComponent , title:'Orders'},

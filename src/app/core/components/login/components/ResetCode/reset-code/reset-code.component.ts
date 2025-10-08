@@ -17,7 +17,7 @@ export class ResetCodeComponent {
    });
   ngOnInit() {
     
-    this.userEmail = this._AuthService.userEmail;
+    this.userEmail = this._AuthService.userEmail();
   }
    confirmCode() {
      this._AuthService.VerifyResetCode(this.code.get('resetCode')?.value!).subscribe({

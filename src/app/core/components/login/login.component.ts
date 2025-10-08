@@ -25,6 +25,8 @@ export class LoginComponent {
         next:(res)=>{
           console.log(res);
           if(res.message == 'success'){
+            this._AuthService.userEmail.set(this.loginForm.get('email')?.value);
+            localStorage.setItem('userEmail',this.loginForm.get('email')?.value);
             this._CookieService.set('token',res.token);
             if(this._CookieService.get('token')){
               this._AuthService.decodeToken();

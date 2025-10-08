@@ -32,7 +32,7 @@ export class NewPasswordComponent {
     
   }
   changePass(){
-    this._AuthService.resetPassword(this._AuthService.userEmail,this.newPass.get('newPassword')?.value!).subscribe({
+    this._AuthService.resetPassword(this._AuthService.userEmail(),this.newPass.get('newPassword')?.value!).subscribe({
       next:(res)=>{
         console.log(res);
        if(res.token){
