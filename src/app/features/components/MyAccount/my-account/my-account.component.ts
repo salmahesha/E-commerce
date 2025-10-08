@@ -17,7 +17,7 @@ export class MyAccountComponent {
   imageUrl!:string;
 
   ngOnInit() {
-    this.imageUrl = localStorage.getItem('URL')!;
+    this.imageUrl = localStorage.getItem('URL')||'./images/1912-3.jpg';
     this.userEmail = localStorage.getItem('userEmail')!;
     
   }
