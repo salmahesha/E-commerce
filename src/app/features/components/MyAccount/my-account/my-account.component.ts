@@ -32,7 +32,7 @@ export class MyAccountComponent {
     let url = e.target as HTMLInputElement;
     console.log(url.files);
       localStorage.setItem('URL',`./images/${url.files?.[0].name}`);
-            this.imageUrl=localStorage.getItem('URL')!
+            this.imageUrl=localStorage.getItem('URL')!;
 
 
     
